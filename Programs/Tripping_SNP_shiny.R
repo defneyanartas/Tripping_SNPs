@@ -47,7 +47,7 @@ shinyApp(
                   opacity = 1)})
       observe({if(time_path()==TRUE){leafletProxy("map", data=filtered_data()) %>% addPolylines(~Long., ~Lat., color = "black", weight=1) }})
       observe({if(time_path()==FALSE){leafletProxy("map", data=filtered_data()) %>% clearShapes }})
-      output$MAF<-renderText({paste0("\n","MAF for selected time period:" ,maf_pop()[1],"(",maf_pop()[2],")")})
+      output$MAF<-renderText({paste0("\n","MAF for selected time period:" ,maf_pop()[1],maf_pop()[2])})
   
     }
 )

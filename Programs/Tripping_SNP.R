@@ -49,22 +49,22 @@ print(sessionInfo())                                                            
 ###############################################################################
 # 1. Data is fetched and organized and cleaned.
 
-
-
-world <- map_data("world")                                                      
-
-meta_data<-readxl::read_excel("Eurasian - Dataset_tims.xlsx")                    #This is definitely not a well organized input file, so in this case, it is manually written in the file and the cleaning is done manually in the script. This is my so-called database now.
-meta_data_less<-meta_data[,c(2,19,25,26,27)]                                     #Getting only the columns related to id, time and location.
+colnames(anno_data)
+anno_data<-read.delim("Eurasian.anno",sep="\t")
+meta_data_less<-anno_data[,c(2,8,15,16,14)]
 colnames(meta_data_less)[2]<-"Year"                                              #Renaming the mean BP year column
+colnames(meta_data_less)[5]<-"Country"
+# meta_data<-readxl::read_excel("Eurasian - Dataset_tims.xlsx")                    #This is definitely not a well organized input file, so in this case, it is manually written in the file and the cleaning is done manually in the script. This is my so-called database now.
+# meta_data_less<-meta_data[,c(2,19,25,26,27)]                                     #Getting only the columns related to id, time and location.
 
 SNPOI<-read.delim("rs6696609.ped", sep=" ", header=FALSE)                        #Reading in the .ped file that is space separated into a dataframe.
-colnames(SNPOI)<- c("Population","Sample ID","Paternal_ID","Maternal_ID","Sex",  #Renaming the columns and making sure Sample Id column is the same name as the meta data sheet sample id column
+colnames(SNPOI)<- c("Population","Master.ID","Paternal_ID","Maternal_ID","Sex",  #Renaming the columns and making sure Master Id column is the same name as the meta data sheet sample id column
                     "Case","Allele_1","Allele_2")
 
 # colnames(SNPOI_combined_data_clean)[7]<-"Lat"
 # colnames(SNPOI_combined_data_clean)[8]<-"Long""
 
-SNPOI_and_meta<-right_join(meta_data_less, SNPOI,by='Sample ID')                 #Joining the SNP info with the metadata based on the individual ID.
+SNPOI_and_meta<-right_join(meta_data_less, SNPOI,by='Master.ID')                 #Joining the SNP info with the metadata based on the individual ID.
 SNPOI_and_meta<-SNPOI_and_meta[complete.cases(SNPOI_and_meta$Lat.),]             #Getting rid of the samples where we dont have proper location information
 SNPOI_and_meta<-SNPOI_and_meta[order(-SNPOI_and_meta$Year),]                     #Ordering the tibble based on the Year in ascending order so we have a chronological order, that can be helpful when plottong path.
 SNPOI_and_meta<-cbind(SNPOI_and_meta,"Genotype_group"=NA)
