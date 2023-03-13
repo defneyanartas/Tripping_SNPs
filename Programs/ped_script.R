@@ -1,5 +1,10 @@
-#data prep script
+#prep 
 library(tidyverse)
+install.packages("shiny")
+library(shiny)
+install.packages("leaflet")
+library(leaflet)
+library(dplyr)
 
 
 anno_data<-read.delim("Eurasian.anno",sep="\t")
@@ -65,7 +70,7 @@ SNPOI_and_meta<-maf_function(SNPOI_and_meta)
 MA_function<-function(df){
   var<-as.data.frame(table(c(df$Allele_1,df$Allele_2)))
   MA<-var[var$Freq==min(var$Freq),"Var1"]                                          #Minor allele for the population determined
-  MAF_pop<-min(var$Freq)/sum(var$Freq)
+  MAF_pop<-round(min(var$Freq)/sum(var$Freq),2)
   if (MA==1){MA="A"}
   else if (MA==2){MA="C"}
   else if (MA==3){MA="G"}
