@@ -34,12 +34,12 @@ library("leaflet.extras")
 #Here we have told the user to run the scripts
 #from programs directory and having a Data folder where the plink files are
 
-anno_data<-read.delim("Data/Eurasian.anno",sep="\t")                                  #Annotation data containing coordinates and dating.
+anno_data<-read.delim("1.Data/Eurasian.anno",sep="\t")                                  #Annotation data containing coordinates and dating.
 meta_data_less<-anno_data[,c(2,8,15,16,14)]                                      #Fetching only the columns of interest
 colnames(meta_data_less)[2]<-"Year"                                              #Renaming the mean BP year column
 
-map_file<-read.delim("Data/Eurasian.map",sep="\t", header=FALSE)                      #plink file containing SNP info in the same order that is presented in the ped file.
-ped_file<-read.delim("Data/Eurasian.ped",sep=" ", header=FALSE)                       #plink file containing the sample id, population, paternal and maternal ids, sex, case respectively as well as genotypes of each SNP for every sample.
+map_file<-read.delim("1.Data/Eurasian.map",sep="\t", header=FALSE)                      #plink file containing SNP info in the same order that is presented in the ped file.
+ped_file<-read.delim("1.Data/Eurasian.ped",sep=" ", header=FALSE)                       #plink file containing the sample id, population, paternal and maternal ids, sex, case respectively as well as genotypes of each SNP for every sample.
 
 ###############################################################################
 # 2. Functions are written for various parts of the ui of the shiny application.
