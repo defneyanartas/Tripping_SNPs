@@ -51,8 +51,7 @@ Fetch the plink files (fam, bim and bed) from:https://github.com/sarabehnamian/O
 ```bash
 plink --bfile Eurasian --recode --out Eurasian --noweb
 ```
-Get the annotation file from course page and name it "Eurasian.anno"
-
+Get the annotation file from :[ https://drive.google.com/drive/folders/1LQyaf6zNSWbklSlf7stQmwFL8N3RZ9NJ?usp=sharingLinks to an external site.](https://drive.google.com/drive/folders/1LQyaf6zNSWbklSlf7stQmwFL8N3RZ9NJ) and name it "Eurasian.anno"
 The files created in PLINK are too large and will not be tracked or pushed to github but the binary files and annotation file is provided in the "1.Data" directory so the files necessary for the program to run can be created by following the PLINK command I have written.
 
 ## 2. Programs
