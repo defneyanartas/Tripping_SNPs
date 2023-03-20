@@ -56,7 +56,7 @@ The files created in PLINK are too large and will not be tracked or pushed to gi
 ## 2. Programs
 
 ### Scripts
-Scripts were written in R in RStudio. 
+Scripts were written in R (version 4.2.1) in RStudio. 
 The functions_file.R contains the commands for loading the libraries, reading the plink and annotation files, together with functions that clean the dataframe and calculate MAF. The application script contains a line of code that sources the functions file and the shiny application. They are very well annotated within the scripts.
 Below is a session information.
 
