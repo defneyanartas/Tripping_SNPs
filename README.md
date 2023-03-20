@@ -13,17 +13,21 @@ Sections:
 ## 1. Installing and set-up
 Worked in the penthouse computer for this section.
 
-Install plink (version v1.07 )
+### PLINK (version v1.07)
+
+Install plink 
 
 ```bash
 wget https://zzz.bwh.harvard.edu/plink/dist/plink-1.07-x86_64.zip   #download to the bin
 unzip plink-1.07-x86_64.zip                                         #after that, add the directory to the path
 ```
+### Git and project directory
 
 Set up the project directory (git repository)
 ```bash
 mkdir Data
 mkdir Programs
+mkdir Results
 
 gitinit
 git remote add origin git@github.com:defneyanartas/Tripping_SNPs.git
@@ -33,8 +37,12 @@ git push --set-upstream origin main
 
 ```
 
+### Conda (version 22.11.1)
+
+conda create --name tripping-r-env r-base 
+
 ## 2. Data
-Worked in the penthouse computer for this section.
+
 It is important to have the directory and file names exactly as stated here. 
 ```bash
 echo "Data/" >> .gitignore                                        #I dont wan to track the Data files, the are large and we dont need them in github.
@@ -50,20 +58,33 @@ nohup cat to_be_extracted.txt | while read line; do echo $line > extract.txt; pl
 Get the annotation file from course page and name it "Eurasian.anno"
 
 ## 3. Programs
-Created programs in my personal laptop to be able to use R Studio easier and moved them to penthouse computer later.
-R version 4.2.1 (2022-06-23 ucrt)
 
-loaded via a namespace (and not attached):
- [1] htmlwidgets_1.6.1 compiler_4.2.1    magrittr_2.0.3    fastmap_1.1.0     R6_2.5.1          cli_3.6.0        
- [7] leaflet_2.1.1     htmltools_0.5.4   tools_4.2.1       rstudioapi_0.14   crosstalk_1.2.0   digest_0.6.31    
-[13] rlang_1.0.6      
+### Scripts
+Scripts were written in R in RStudio. Below is a session information.
 
-You can the application simply by running this line from your Programs directory.
+htmlwidgets_1.6.1 compiler_4.2.1    magrittr_2.0.3    fastmap_1.1.0     R6_2.5.1          cli_3.6.0        
+leaflet_2.1.1     htmltools_0.5.4   tools_4.2.1       rstudioapi_0.14   crosstalk_1.2.0   digest_0.6.31    
+rlang_1.0.6      
+
+### Usage 
+
+We need to run the application in the conda environment that we have created. We also need to install the required packages.
+```bash
+conda activate tripping-r-env r-base
+conda install -c conda-forge r-shiny
+conda install -c conda-forge r-tidyverse
+conda install -c conda-forge r-leaflet
+conda install -c conda-forge r-dplyr
+conda install -c conda-forge r-shinywidgets
+conda install -c conda-forge r-leaflet.extras
 ```
-sudo apt install r-base-core --fix-missing
-Rscript Tripping_SNP_shiny.R && R -e "shiny::runApp('Tripping_SNP_shiny.R')"
-Rscript Tripping_SNP_shiny.R ; R.exe -e "shiny::runApp('Tripping_SNP_shiny.R')"
+
+You can run the application by running the code below from your project directory. Notice that scripts must be placed under "Programs" directory and the data under "Data" directory.
 ```
+Rscript Programs/Tripping_SNP_shiny.R && R -e "shiny::runApp('Programs/Tripping_SNP_shiny.R', launch.browser = TRUE)"
+```
+It might take some time to read data depending on the size. When a line like "http://127.0.0.1:4164/" appears, either there will be a popup window on your browser or if not, copy the address to your browser and this should bring up the GUI, then you can select your options and start visualizing.
+
 ## 4. Results
 
 The default SNP is depicted together with no populations picked when the application is started. Minor allele and the minor allele frequency (MAF) are also displayed underneath the map for the whole dataset of the chosen SNP.
