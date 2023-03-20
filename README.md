@@ -41,7 +41,7 @@ conda create --name tripping-r-env r-base
 ```
 ## 1. Data
 
-It is important to have the directory and file names exactly as stated here in this document. The files created here will be in the Data directory for an example run.
+It is important to have the directory and file names exactly as stated here in this document. 
 
 Fetch the plink files (fam, bim and bed) from:https://github.com/sarabehnamian/Origins-of-Ancient-Eurasian-Genomes/tree/main/steps/Step%20. Rename the base as Eurasian. Then proceed to use plink to recode the binary files to readable files. Output will be a map and ped file. 
 ```bash
@@ -50,6 +50,8 @@ cat Eurasian.map | cut -f 2 | whiel read line; do echo $line > extract.txt; plin
 nohup cat to_be_extracted.txt | while read line; do echo $line > extract.txt; plink --bfile Eurasian --extract extract.txt --recode --out $line --noweb ; done &
 ```
 Get the annotation file from course page and name it "Eurasian.anno"
+
+The files created in PLINK are too large and will not be tracked or pushed to github but the binary files and annotation file is provided in the "1.Data" directory so the files necessary for the program to run can be created by following the PLINK command I have written.
 
 ## 2. Programs
 
