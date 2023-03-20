@@ -16,27 +16,30 @@
 ###############################################################################
 # 0. The packages are installed and libraries are loaded. 
 
+
+#install.packages("tidyverse")
 library(tidyverse)
-install.packages("shiny")
+#install.packages("shiny")
 library(shiny)
-install.packages("leaflet")
+#install.packages("leaflet")
 library(leaflet)
 library(dplyr)
-install.packages("shinyWidgets")
+#install.packages("shinyWidgets")
 library(shinyWidgets)
-
+#install.packages("leaflet.extras")
+library("leaflet.extras")
 
 ###############################################################################
 # 1. Data is read into dataframes. 
 #Here we have told the user to run the scripts
 #from programs directory and having a Data folder where the plink files are
 
-anno_data<-read.delim("../Data/Eurasian.anno",sep="\t")                                  #Annotation data containing coordinates and dating.
+anno_data<-read.delim("Data/Eurasian.anno",sep="\t")                                  #Annotation data containing coordinates and dating.
 meta_data_less<-anno_data[,c(2,8,15,16,14)]                                      #Fetching only the columns of interest
 colnames(meta_data_less)[2]<-"Year"                                              #Renaming the mean BP year column
 
-map_file<-read.delim("../Data/Eurasian.map",sep="\t", header=FALSE)                      #plink file containing SNP info in the same order that is presented in the ped file.
-ped_file<-read.delim("../Data/Eurasian.ped",sep=" ", header=FALSE)                       #plink file containing the sample id, population, paternal and maternal ids, sex, case respectively as well as genotypes of each SNP for every sample.
+map_file<-read.delim("Data/Eurasian.map",sep="\t", header=FALSE)                      #plink file containing SNP info in the same order that is presented in the ped file.
+ped_file<-read.delim("Data/Eurasian.ped",sep=" ", header=FALSE)                       #plink file containing the sample id, population, paternal and maternal ids, sex, case respectively as well as genotypes of each SNP for every sample.
 
 ###############################################################################
 # 2. Functions are written for various parts of the ui of the shiny application.
