@@ -4,7 +4,11 @@ Author: Defne Yanartas
 
 Date: March 2023
 
+Tripping SNPs is a web application tool to visualize SNPs on a map and track them over time.
+This README file explains how to use the tool for a set of plink files and annotation file.
+
 Sections:
+
 0. Installing and set-up
 1. Data
 2. Programs (usage)
