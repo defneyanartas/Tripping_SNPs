@@ -68,12 +68,12 @@ Rscript Tripping_SNP_shiny.R ; R.exe -e "shiny::runApp('Tripping_SNP_shiny.R')"
 
 The default SNP is depicted together with no populations picked when the application is started. Minor allele and the minor allele frequency (MAF) are also displayed underneath the map for the whole dataset of the chosen SNP.
 
-<img src="../Picture1.png" alt= “” width="80%" height="value">
+<img src="Results/Picture1.png" alt= “” width="80%" height="value">
 
 The user can select a different SNP, certain populations or a time period.
 
-<img src="../Picture2.png" alt= “” width="80%" height="value">
+<img src="Results/Picture2.png" alt= “” width="80%" height="value">
 
 When the user ticks the time path check box, a time tracking line is drawn showing the samples from the oldest to the newest. Also when the cursor is on a marker, information regarding the sample is depicted.
 
-<img src="../Picture3.png" alt= “” width="80%" height="value">
+<img src="Results/Picture3.png" alt= “” width="80%" height="value">
