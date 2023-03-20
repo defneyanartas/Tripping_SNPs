@@ -5,13 +5,12 @@ Author: Defne Yanartas
 Date: March 2023
 
 Sections:
-1. Installing and set-up
-2. Data
-3. Programs (usage)
-4. Results
+0. Installing and set-up
+1. Data
+2. Programs (usage)
+3. Results
 
-## 1. Installing and set-up
-Worked in the penthouse computer for this section.
+## 0. Installing and set-up
 
 ### PLINK (version v1.07)
 
@@ -23,7 +22,7 @@ unzip plink-1.07-x86_64.zip                                         #after that,
 ```
 ### Git and project directory
 
-Set up the project directory (git repository)
+Set up the project directory and git repository. For the rest of the file I will not wrote each time that I commit changes but the user can decide when to commit and push their changes to the repository and remote.
 ```bash
 mkdir Data
 mkdir Programs
@@ -34,21 +33,16 @@ git remote add origin git@github.com:defneyanartas/Tripping_SNPs.git
 git branch -M main
 git push --set-upstream origin main 
 
-
 ```
 
 ### Conda (version 22.11.1)
-
-conda create --name tripping-r-env r-base 
-
-## 2. Data
-
-It is important to have the directory and file names exactly as stated here. 
 ```bash
-echo "Data/" >> .gitignore                                        #I dont wan to track the Data files, the are large and we dont need them in github.
-git add .gitignore
-git commit -m "Add Data directory to the ignore file"             #From now on I will not type each time I commit, general procedure is that I commit with every new file/folder/update.
+conda create --name tripping-r-env r-base 
 ```
+## 1. Data
+
+It is important to have the directory and file names exactly as stated here in this document. The files created here will be in the Data directory for an example run.
+
 Fetch the plink files (fam, bim and bed) from:https://github.com/sarabehnamian/Origins-of-Ancient-Eurasian-Genomes/tree/main/steps/Step%20. Rename the base as Eurasian. Then proceed to use plink to recode the binary files to readable files. Output will be a map and ped file. 
 ```bash
 plink --bfile Eurasian --recode --out Eurasian --noweb
@@ -57,7 +51,7 @@ nohup cat to_be_extracted.txt | while read line; do echo $line > extract.txt; pl
 ```
 Get the annotation file from course page and name it "Eurasian.anno"
 
-## 3. Programs
+## 2. Programs
 
 ### Scripts
 Scripts were written in R in RStudio. Below is a session information.
@@ -85,7 +79,7 @@ Rscript Programs/Tripping_SNP_shiny.R && R -e "shiny::runApp('Programs/Tripping_
 ```
 It might take some time to read data depending on the size. When a line like "http://127.0.0.1:4164/" appears, either there will be a popup window on your browser or if not, copy the address to your browser and this should bring up the GUI, then you can select your options and start visualizing.
 
-## 4. Results
+## 3. Results
 
 The default SNP is depicted together with no populations picked when the application is started. Minor allele and the minor allele frequency (MAF) are also displayed underneath the map for the whole dataset of the chosen SNP.
 
