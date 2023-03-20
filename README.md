@@ -50,8 +50,6 @@ It is important to have the directory and file names exactly as stated here in t
 Fetch the plink files (fam, bim and bed) from:https://github.com/sarabehnamian/Origins-of-Ancient-Eurasian-Genomes/tree/main/steps/Step%20. Rename the base as Eurasian. Then proceed to use plink to recode the binary files to readable files. Output will be a map and ped file. 
 ```bash
 plink --bfile Eurasian --recode --out Eurasian --noweb
-cat Eurasian.map | cut -f 2 | whiel read line; do echo $line > extract.txt; plink --bfile Eurasian --extract extract.txt --recode --out $line --noweb; done
-nohup cat to_be_extracted.txt | while read line; do echo $line > extract.txt; plink --bfile Eurasian --extract extract.txt --recode --out $line --noweb ; done &
 ```
 Get the annotation file from course page and name it "Eurasian.anno"
 
@@ -80,8 +78,7 @@ conda install -c conda-forge r-dplyr
 conda install -c conda-forge r-shinywidgets
 conda install -c conda-forge r-leaflet.extras
 ```
-
-You can run the application by running the code below from your project directory. Notice that scripts must be placed under "Programs" directory and the data under "Data" directory.
+You can run the application by running the code below from your project directory. Notice that scripts must be placed under "2.Programs" directory and the data under "1.Data" directory.
 ```
 Rscript Programs/Tripping_SNP_shiny.R && R -e "shiny::runApp('Programs/Tripping_SNP_shiny.R', launch.browser = TRUE)"
 ```
